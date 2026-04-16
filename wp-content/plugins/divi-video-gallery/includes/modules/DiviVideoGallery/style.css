@@ -1,0 +1,108 @@
+/*Categories*/
+
+ul.dvg-gallery-filter-categories {
+    list-style: none !important;
+    padding: 0;
+    text-align: center;
+}
+li.dvg-gallery-filter {
+    color: #fff;
+    background-color: #000;
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    line-height: normal;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    cursor: pointer;
+    border-style: solid;
+}
+
+.dvg-gallery-item {
+    
+}
+
+/*Pagination*/
+.dvg-gallery-pagination-wrapper {
+    margin-top: 20px;
+}
+ul.dvg-gallery-pagination {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+li.dvg-gallery-page-button {
+    color: #fff;
+    background-color: #000;
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    line-height: normal;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    cursor: pointer;
+    border-style: solid;
+}
+
+li.dvg-gallery-page-button.dvg-gallery-page-button-active {
+    color: #000;
+    background-color: #fff;
+}
+
+li.dvg-gallery-page-button.dvg-page-disabled {
+	display: none;
+}
+
+.dvg-out-page {
+	display: none;
+}
+
+#dvg-lightbox-player {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 8px rgba(0,0,0,.6);
+    background: #000;
+}
+
+.vjs-videopress {
+    width: 100%;
+    height: 100%;
+}
+
+.dvg_inline_player .dvg_iframe_scaler > div,
+.dvg_iframe_scaler.videopress > div {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+@media (max-width: 980px) {
+    .mfp-content.dvg-vertical-player {
+        height: 90% !important;
+    }
+}
+
+.mfp-content.dvg-vertical-player {
+    aspect-ratio: 9 / 16;
+}
+
+.mfp-content.dvg-vertical-player.dvg-vertical-h-adjust {
+    height: 90%;
+    width: auto !important;
+}
+.mfp-content.dvg-vertical-player.dvg-vertical-v-adjust {
+    width: 90%;
+    height: auto !important;
+}
