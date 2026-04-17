@@ -234,13 +234,25 @@ p  { margin: 0 0 1em; color: var(--color-text-muted); }
 
 /* Video hero variant */
 .hero--video { background: #0a1422; }
-.hero__video {
+.hero__video-wrap {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero__video {
+  /* YouTube aspect-ratio trick: scale the iframe so it always fills
+     the section while keeping its 16:9 ratio and hiding any letterbox. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;          /* 16:9 */
+  min-width: 177.78vh;      /* 16:9 inverted */
+  min-height: 100%;
+  transform: translate(-50%, -50%) scale(1.25);
+  border: 0;
   pointer-events: none;
 }
 .hero__overlay {
