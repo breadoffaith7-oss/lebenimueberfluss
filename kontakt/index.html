@@ -32,6 +32,16 @@
     outline:none; border-color:var(--color-accent); box-shadow:0 0 0 4px rgba(201,162,39,.12);
   }
   form.contact textarea { min-height:140px; resize:vertical; }
+  .form-msg {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .form-msg.is-show { display: block; }
+  .form-msg--success { background: rgba(34, 139, 77, 0.08); border: 1px solid rgba(34, 139, 77, 0.3); color: #1e7a42; }
+  .form-msg--error   { background: rgba(199, 0, 57, 0.08); border: 1px solid rgba(199, 0, 57, 0.3); color: #a5002e; }
 </style>
 </head>
 <body>
@@ -104,18 +114,25 @@
         </ul>
       </div>
 
-      <form class="contact" action="mailto:info@lebenimueberfluss.ch" method="post" enctype="text/plain">
-        <h3 style="font-size:1.35rem;margin-bottom:24px;">Schreibe uns</h3>
-        <label for="name">Name</label>
-        <input id="name" name="Name" type="text" required placeholder="Dein Name">
-        <label for="email">E-Mail</label>
-        <input id="email" name="E-Mail" type="email" required placeholder="du@email.ch">
-        <label for="thema">Thema</label>
-        <input id="thema" name="Thema" type="text" placeholder="Gebetsanliegen, Buch, Hilfsprojekt …">
-        <label for="message">Nachricht</label>
-        <textarea id="message" name="Nachricht" required placeholder="Deine Nachricht an uns"></textarea>
-        <button type="submit" class="btn btn--primary" style="width:100%;">Nachricht senden</button>
-      </form>
+      <div id="contact-form-wrap">
+        <form class="contact" id="contact-form" action="https://formspree.io/f/xvzwdyar" method="POST">
+          <h3 style="font-size:1.35rem;margin-bottom:24px;">Schreibe uns</h3>
+          <div id="contact-error" class="form-msg form-msg--error">⚠️ Fehler beim Senden. Bitte versuche es später noch einmal oder schreibe direkt an <a href="mailto:info@lebenimueberfluss.ch">info@lebenimueberfluss.ch</a>.</div>
+          <label for="name">Name</label>
+          <input id="name" name="Name" type="text" required placeholder="Dein Name">
+          <label for="email">E-Mail</label>
+          <input id="email" name="email" type="email" required placeholder="du@email.ch">
+          <label for="thema">Thema</label>
+          <input id="thema" name="Thema" type="text" placeholder="Gebetsanliegen, Buch, Hilfsprojekt …">
+          <label for="message">Nachricht</label>
+          <textarea id="message" name="Nachricht" required placeholder="Deine Nachricht an uns"></textarea>
+          <button type="submit" id="contact-submit" class="btn btn--primary" style="width:100%;">Nachricht senden</button>
+        </form>
+        <div id="contact-success" class="form-msg form-msg--success" style="margin-top:16px;">
+          🎉 <strong>Nachricht erfolgreich gesendet!</strong><br>
+          Vielen Dank – wir melden uns in der Regel innerhalb von 2–3 Werktagen zurück.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -139,6 +156,42 @@
 </footer>
 
 <script src="/assets/script.js" defer></script>
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // AJAX submit to Formspree (same mechanism as Taste and See)
+  (function () {
+    var form = document.getElementById("contact-form");
+    var submitBtn = document.getElementById("contact-submit");
+    var successMsg = document.getElementById("contact-success");
+    var errorMsg = document.getElementById("contact-error");
+    if (!form) return;
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submitBtn.textContent = "Wird gesendet …";
+      submitBtn.disabled = true;
+      errorMsg.classList.remove("is-show");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      }).then(function (response) {
+        if (response.ok) {
+          form.style.display = "none";
+          successMsg.classList.add("is-show");
+          successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+          form.reset();
+        } else {
+          throw new Error("Sende-Fehler");
+        }
+      }).catch(function () {
+        errorMsg.classList.add("is-show");
+        submitBtn.textContent = "Nachricht senden";
+        submitBtn.disabled = false;
+      });
+    });
+  })();
+</script>
 </body>
 </html>
