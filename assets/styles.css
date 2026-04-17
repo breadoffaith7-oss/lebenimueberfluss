@@ -617,6 +617,87 @@ p  { margin: 0 0 1em; color: var(--color-text-muted); }
   .profile-hero p { margin: 0 auto; }
 }
 
+/* Event cards
+--------------------------------------------------------------------------- */
+.event-card { position: relative; }
+.event-card .card__media {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #0f1b2d, #1a2a44);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+}
+.event-card.event-card--past .card__media {
+  background: linear-gradient(135deg, #8b5a2b, #c9a227);
+}
+.event-card.event-card--upcoming .card__media {
+  background: linear-gradient(135deg, #0f1b2d, #4a6b9a);
+}
+.event-card .event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+.event-card .event-date .day {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.event-card .event-date .month {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.event-card .card__badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: rgba(15,27,45,0.82);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  z-index: 2;
+}
+.event-card.event-card--past .card__badge { background: rgba(139,90,43,0.9); }
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+.event-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.event-meta svg { width: 14px; height: 14px; }
+
+/* Draft / placeholder note */
+.placeholder-note {
+  background: rgba(201,162,39,0.08);
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: var(--space-md) 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+.placeholder-note strong { color: var(--color-accent); }
+
 /* Taste and See promo banner
 --------------------------------------------------------------------------- */
 .tas-promo-banner {
