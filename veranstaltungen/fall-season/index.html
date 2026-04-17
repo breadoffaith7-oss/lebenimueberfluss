@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fall Season — Rückblick · Leben im Überfluss</title>
-<meta name="description" content="Rückblick auf die Fall Season von Leben im Überfluss – eine erfolgreiche Veranstaltung. Bilder und Zeugnisse folgen.">
+<title>Fallseason 2025 — Rückblick · Leben im Überfluss</title>
+<meta name="description" content="Rückblick auf die Fallseason 2025 – ein gesegneter Nachmittag für Frauen am 25.10.2025 in Bachenbülach mit Elodie Massua, Jasmin Faith und Raffaela Schär.">
 <link rel="canonical" href="https://lebenimueberfluss.ch/veranstaltungen/fall-season/">
 <link rel="icon" href="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss-32x32.png" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,24 +12,179 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css">
 <style>
-  .breadcrumb {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 18px;
+  :root { --fall-accent: #C70039; --fall-accent-2: #FF5733; }
+
+  .breadcrumb { font-size: 0.85rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.8); margin-bottom: 18px; }
+  .breadcrumb a { color: #ffd27a; }
+
+  /* Fallseason hero */
+  .fall-hero {
+    position: relative;
+    background: linear-gradient(45deg, #FF5733 0%, #C70039 100%);
+    color: #fff;
+    padding: clamp(80px, 12vw, 140px) 0 clamp(60px, 10vw, 110px);
+    overflow: hidden;
   }
-  .breadcrumb a { color: var(--color-accent); }
+  .fall-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at top right, rgba(255,255,255,0.18), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(0,0,0,0.18), transparent 55%);
+  }
+  .fall-hero .container { position: relative; z-index: 1; text-align: center; }
+  .fall-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5.4rem);
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin: 0 0 10px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+  .fall-hero .fall-eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #ffd27a;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .fall-hero .subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    margin: 0 auto 8px;
+    color: rgba(255,255,255,0.95);
+  }
+  .fall-hero .date-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 10px 22px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.88rem;
+  }
+  .fall-hero .date-chip strong {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+  }
+
+  /* Speaker cards */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    margin-top: var(--space-md);
+  }
+  .speaker-card { text-align: center; }
+  .speaker-card .photo {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 18px;
+    border: 4px solid #fff;
+    box-shadow: 0 12px 28px rgba(199, 0, 57, 0.18);
+  }
+  .speaker-card .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .speaker-card h3 {
+    font-family: var(--font-serif);
+    color: var(--fall-accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    margin: 0 0 4px;
+  }
+  .speaker-card .role {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 500;
+  }
+
+  /* Program list */
+  .program-list { list-style: none; padding: 0; margin: 0; }
+  .program-list li {
+    padding: 14px 0 14px 36px;
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 1.05rem;
+  }
+  .program-list li:last-child { border-bottom: 0; }
+  .program-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 20px;
+    width: 16px; height: 16px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23C70039' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z'/></svg>");
+    background-repeat: no-repeat;
+  }
+
+  /* Details list */
+  .details-list { list-style: none; padding: 0; margin: 0; }
+  .details-list li {
+    padding: 12px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 1.05rem;
+  }
+  .details-list .ico {
+    width: 38px; height: 38px; flex: none;
+    border-radius: 50%;
+    background: rgba(199, 0, 57, 0.1);
+    color: var(--fall-accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .details-list strong { color: var(--color-primary); }
+  .details-list small { display:block; color: var(--color-text-muted); }
+
+  /* Verse block */
+  .verse-block {
+    background: linear-gradient(135deg, rgba(255, 87, 51, 0.08), rgba(199, 0, 57, 0.08));
+    border-left: 4px solid var(--fall-accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 28px 32px;
+    margin: var(--space-md) 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--color-primary);
+  }
+  .verse-block cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fall-accent);
+  }
+
+  /* Gallery placeholders */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
     margin-top: var(--space-md);
   }
   .gallery-grid .placeholder-tile {
     aspect-ratio: 4 / 3;
     border-radius: var(--radius);
-    background: linear-gradient(135deg, rgba(139,90,43,0.12), rgba(201,162,39,0.08));
-    border: 1px dashed rgba(201,162,39,0.4);
+    background: linear-gradient(135deg, rgba(255, 87, 51, 0.08), rgba(199, 0, 57, 0.08));
+    border: 1px dashed rgba(199, 0, 57, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,6 +193,18 @@
     text-align: center;
     padding: 16px;
   }
+
+  /* Fall-colored CTA band */
+  .cta-band--fall {
+    background: linear-gradient(135deg, #FF5733 0%, #C70039 100%);
+  }
+  .cta-band--fall::before { display: none; }
+  .btn--fall {
+    background: #fff;
+    color: var(--fall-accent);
+    border-color: #fff;
+  }
+  .btn--fall:hover { background: #fff1e8; color: var(--fall-accent); border-color: #fff1e8; }
 </style>
 </head>
 <body>
@@ -64,33 +231,122 @@
   </div>
 </header>
 
-<section class="profile-hero" style="background:linear-gradient(135deg,#6b3e1a 0%,#8b5a2b 50%,#c9a227 100%);">
-  <div class="container" style="text-align:center;">
+<section class="fall-hero">
+  <div class="container">
     <nav class="breadcrumb" aria-label="Brotkrumen-Navigation">
-      <a href="/veranstaltungen/">Veranstaltungen</a> &nbsp;›&nbsp; <a href="/veranstaltungen/#vergangen">Vergangene</a> &nbsp;›&nbsp; Fall Season
+      <a href="/veranstaltungen/">Veranstaltungen</a> &nbsp;›&nbsp; <a href="/veranstaltungen/#vergangen">Vergangene</a> &nbsp;›&nbsp; Fallseason 2025
     </nav>
-    <span class="role">Rückblick · Herbst 2025</span>
-    <h1>Fall Season</h1>
-    <p style="margin:0 auto;max-width:640px;">Eine gesegnete und erfolgreiche Veranstaltung von Leben im Überfluss.</p>
+    <span class="fall-eyebrow">Rückblick · Frauen-Event</span>
+    <h1>FALLSEASON</h1>
+    <p class="subtitle">„Alles hat seine Zeit." (Prediger 3,1)</p>
+    <div class="date-chip">📅 <strong>25. Oktober 2025</strong> · Bachenbülach (CH)</div>
   </div>
 </section>
 
 <section class="section">
   <div class="container-narrow">
-    <div class="placeholder-note">
-      <strong>Hinweis:</strong> Dieser Rückblick wird gerade erstellt. Der ausführliche Bericht mit Zeugnissen sowie die Bildergalerie folgen in Kürze.
-    </div>
-
     <div class="section-header" style="text-align:left;">
-      <span class="eyebrow">Über das Event</span>
-      <h2>Eine erfolgreiche Begegnung</h2>
+      <span class="eyebrow" style="color:var(--fall-accent)">Über das Event</span>
+      <h2>Ein Nachmittag zum Nachdenken, Loslassen und Neubeginnen</h2>
     </div>
-    <p>Die <strong>Fall Season</strong> war eine besondere Zeit der Gemeinschaft, des Gebets und der Ermutigung. Menschen sind Gott begegnet, haben Hoffnung geschöpft und sind gestärkt in ihren Alltag zurückgekehrt.</p>
-    <p><em>Weitere Details, persönliche Zeugnisse und Eindrücke von diesem besonderen Tag werden hier in Kürze ergänzt.</em></p>
+    <p style="font-size:1.1rem;"><strong>In welcher Season stehst du gerade?</strong><br>
+    Ist es Zeit, loszulassen? Sehnst du dich nach Veränderung – nach neuer Ermutigung?</p>
+    <p>Fallseason war ein Nachmittag für Frauen, um über die verschiedenen Lebenszeiten nachzudenken. Gemeinsam haben wir entdeckt, wie Gott uns gerade in Zeiten des Loslassens und Neubeginns begegnet.</p>
 
-    <div class="section-header" style="text-align:left; margin-top:48px;">
-      <span class="eyebrow">Impressionen</span>
+    <blockquote class="verse-block">
+      „Alles hat seine Zeit, und jedes Vorhaben unter dem Himmel hat seine Stunde."
+      <cite>— Prediger 3,1</cite>
+    </blockquote>
+
+    <p><em>Ein ausführlicher Bericht mit Zeugnissen und persönlichen Eindrücken von diesem besonderen Tag folgt hier in Kürze.</em></p>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container-narrow">
+    <div class="section-header" style="text-align:left;">
+      <span class="eyebrow" style="color:var(--fall-accent)">Mit dabei</span>
+      <h2>Speakerinnen</h2>
+    </div>
+
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <div class="photo">
+          <img src="/wp-content/uploads/2025/09/Bildschirmfoto-2025-09-21-um-21.38.57.png" alt="Elodie Massua" loading="lazy">
+        </div>
+        <h3>Elodie Massua</h3>
+        <div class="role">Gastgeberin &amp; Moderation</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="photo">
+          <img src="/wp-content/uploads/2025/09/Bildschirmfoto-2025-09-21-um-21.39.13.png" alt="Jasmin Faith" loading="lazy">
+        </div>
+        <h3>Jasmin Faith</h3>
+        <div class="role">Lobpreis &amp; Anbetung</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="photo">
+          <img src="/wp-content/uploads/2025/09/Bildschirmfoto-2025-09-21-um-22.00.26.png" alt="Raffaela Schär" loading="lazy">
+        </div>
+        <h3>Raffaela Schär</h3>
+        <div class="role">Zeugnis &amp; Impulse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-narrow">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px;">
+      <div>
+        <div class="section-header" style="text-align:left;">
+          <span class="eyebrow" style="color:var(--fall-accent)">Programm</span>
+          <h2>Was uns erwartet hat</h2>
+        </div>
+        <ul class="program-list">
+          <li>Gemeinsames Gebet</li>
+          <li>Lobpreis &amp; Anbetung</li>
+          <li>Impulse &amp; persönliche Zeugnisse</li>
+          <li>Bring &amp; Share Buffet</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="section-header" style="text-align:left;">
+          <span class="eyebrow" style="color:var(--fall-accent)">Details</span>
+          <h2>Wann &amp; Wo</h2>
+        </div>
+        <ul class="details-list">
+          <li>
+            <span class="ico" aria-hidden="true">📅</span>
+            <div><strong>Datum</strong><small>Samstag, 25. Oktober 2025</small></div>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">📍</span>
+            <div><strong>Ort</strong><small>8184 Bachenbülach, Schweiz</small></div>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">⏰</span>
+            <div><strong>Beginn</strong><small>ab 12:15 Uhr</small></div>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">🏁</span>
+            <div><strong>Ende</strong><small>17:30 Uhr</small></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container-narrow">
+    <div class="section-header" style="text-align:left;">
+      <span class="eyebrow" style="color:var(--fall-accent)">Impressionen</span>
       <h2>Bildergalerie</h2>
+      <p>Eindrücke vom Tag – Bilder folgen in Kürze.</p>
     </div>
     <div class="gallery-grid">
       <div class="placeholder-tile">Bild folgt</div>
@@ -105,11 +361,11 @@
 
 <section class="section">
   <div class="container">
-    <div class="cta-band">
+    <div class="cta-band cta-band--fall">
       <h2>Sei beim nächsten Mal dabei</h2>
       <p>Entdecke unsere nächsten Veranstaltungen und reserviere dir deinen Platz.</p>
       <div class="hero__actions" style="justify-content:center">
-        <a class="btn btn--primary" href="/veranstaltungen/#zukuenftig">Zukünftige Events ansehen</a>
+        <a class="btn btn--fall" href="/veranstaltungen/#zukuenftig">Zukünftige Events ansehen</a>
         <a class="btn btn--ghost" href="/kontakt/">Kontakt aufnehmen</a>
       </div>
     </div>
