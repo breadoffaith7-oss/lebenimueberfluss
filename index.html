@@ -20,308 +20,523 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#c9a227; --accent-hover:#b08e1f; --navy:#0f1b2d; --navy-deep:#0a1422;
+  --text:#2b2f36; --muted:#5c6370; --cream:#f7f5f0;
+  --serif:"Playfair Display",Georgia,serif; --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ margin:0; font-family:var(--sans); color:var(--text); background:#fff; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+img,svg,video{ max-width:100%; height:auto; display:block; }
+a{ text-decoration:none; color:inherit; }
+ul{ margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-height:1.2; margin:0 0 .6em; letter-spacing:-.01em; }
+.container{ width:100%; max-width:1200px; margin:0 auto; padding:0 24px; }
+.eyebrow{ display:inline-block; font-size:.78rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.divider{ width:64px; height:3px; background:var(--accent); margin:22px auto 0; border-radius:2px; border:0; }
+
+/* Animations */
+@keyframes liu-fadeUp{ from{ opacity:0; transform:translateY(34px);} to{ opacity:1; transform:translateY(0);} }
+@keyframes liu-fadeDown{ from{ opacity:0; transform:translateY(-24px);} to{ opacity:1; transform:translateY(0);} }
+@keyframes liu-ken{ from{ transform:scale(1.06);} to{ transform:scale(1.2);} }
+@keyframes liu-pulse{ 0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(201,162,39,.55);} 50%{ transform:scale(1.08); box-shadow:0 0 0 16px rgba(201,162,39,0);} }
+@keyframes liu-float{ 0%,100%{ transform:translateY(0) translateX(0);} 50%{ transform:translateY(-26px) translateX(10px);} }
+@keyframes liu-float2{ 0%,100%{ transform:translateY(0) translateX(0);} 50%{ transform:translateY(22px) translateX(-14px);} }
+@keyframes liu-drawline{ from{ width:0; opacity:0;} to{ width:64px; opacity:1;} }
+@keyframes liu-bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+@keyframes liu-down{ 0%,100%{ transform:translateY(0); opacity:.5;} 50%{ transform:translateY(8px); opacity:1;} }
+@keyframes liu-wave{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+@keyframes liu-ripple{ to{ transform:scale(4); opacity:0;} }
+@keyframes liu-shimmer{ 0%{ transform:translateX(-22%);} 100%{ transform:translateX(22%);} }
+@keyframes liu-bubble{ 0%{ transform:translateY(0) scale(.5); opacity:0;} 14%{ opacity:.7;} 100%{ transform:translateY(-180px) scale(1); opacity:0;} }
+@keyframes liu-caustic{ 0%,100%{ opacity:.25; transform:translateX(0) scale(1);} 50%{ opacity:.5; transform:translateX(-18px) scale(1.05);} }
+
+/* Reveal on scroll */
+.reveal{ opacity:0; transform:translateY(40px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.is-visible{ opacity:1; transform:none; }
+
+/* Header */
+.header{ position:fixed; top:0; left:0; right:0; z-index:60; padding:20px 0; background:rgba(10,20,34,0); transition:background .3s ease, padding .3s ease, box-shadow .3s ease; }
+.header.scrolled{ background:rgba(10,20,34,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); box-shadow:0 8px 28px rgba(0,0,0,.3); padding:12px 0; }
+.nav{ display:flex; align-items:center; justify-content:space-between; position:relative; }
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand img{ width:46px; height:46px; border-radius:50%; box-shadow:0 4px 14px rgba(0,0,0,.3); }
+.brand span{ font-family:var(--serif); font-weight:700; font-size:1.05rem; line-height:1.05; color:#fff; }
+.menu{ display:flex; align-items:center; gap:30px; }
+.menu a{ color:#e8ecf2; font-weight:500; font-size:.95rem; padding-bottom:3px; border-bottom:2px solid transparent; transition:color .2s, border-color .2s; }
+.menu a:hover{ color:var(--accent); border-color:var(--accent); }
+.menu .btn-nav{ background:var(--accent); color:var(--navy); font-weight:600; padding:11px 22px; border-radius:999px; border:0; transition:transform .22s, box-shadow .22s, background .22s; }
+.menu .btn-nav:hover{ transform:translateY(-3px); box-shadow:0 12px 28px rgba(201,162,39,.45); background:var(--accent-hover); border-color:transparent; }
+.menu-toggle{ display:none; background:none; border:0; color:#fff; cursor:pointer; padding:6px; }
+
+/* Buttons */
+.btn{ display:inline-flex; align-items:center; gap:10px; font-weight:600; padding:16px 32px; border-radius:999px; border:2px solid transparent; cursor:pointer; position:relative; overflow:hidden; transition:transform .22s, box-shadow .22s, background .22s, color .22s, border-color .22s; }
+.btn--gold{ background:var(--accent); color:var(--navy); box-shadow:0 10px 30px rgba(201,162,39,.35); }
+.btn--gold:hover{ transform:translateY(-4px) scale(1.02); box-shadow:0 18px 40px rgba(201,162,39,.5); }
+.btn--ghost{ background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.4); }
+.btn--ghost:hover{ background:#fff; color:var(--navy); transform:translateY(-4px); border-color:#fff; }
+.btn--outline{ background:transparent; color:var(--navy); border-color:#d8d2c4; }
+.btn--outline:hover{ background:var(--navy); color:#fff; border-color:var(--navy); }
+.btn--yt{ background:#ff0000; color:#fff; padding:15px 30px; }
+.btn--yt:hover{ transform:translateY(-4px); box-shadow:0 16px 36px rgba(255,0,0,.35); }
+
+/* Hero */
+.hero{ position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:linear-gradient(180deg,#0d2236,#0a1422); }
+.hero__media{ position:absolute; inset:0; animation:liu-ken 26s ease-in-out infinite alternate; will-change:transform; }
+.hero__media video{ position:absolute; top:50%; left:50%; width:100vw; height:56.25vw; min-height:100vh; min-width:177.78vh; transform:translate(-50%,-50%); object-fit:cover; pointer-events:none; }
+.hero__overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,26,42,.55) 0%, rgba(8,22,38,.5) 38%, rgba(8,20,34,.86) 100%); }
+.hero__caustic{ position:absolute; inset:0; background:repeating-linear-gradient(118deg, rgba(255,255,255,0) 0, rgba(170,210,230,.10) 60px, rgba(255,255,255,0) 130px); mix-blend-mode:screen; animation:liu-caustic 9s ease-in-out infinite; pointer-events:none; }
+.orb{ position:absolute; border-radius:50%; pointer-events:none; }
+.hero__inner{ position:relative; z-index:5; max-width:1000px; margin:0 auto; padding:120px 24px 110px; text-align:center; }
+.hero__inner h1{ font-weight:800; font-size:clamp(2.6rem,6.5vw,5rem); line-height:1.04; color:#fff; margin:0 0 24px; text-shadow:0 4px 30px rgba(0,0,0,.45); }
+.hero__inner .lead{ max-width:680px; margin:0 auto 30px; font-size:clamp(1.05rem,1.7vw,1.25rem); color:#dce6ef; }
+.verse{ font-family:var(--serif); font-style:italic; font-size:clamp(1.1rem,2vw,1.45rem); line-height:1.5; color:#f1ead6; margin:0; }
+.verse-ref{ display:block; margin-top:12px; font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+.hero__actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.hero__a1{ opacity:0; animation:liu-fadeDown .8s cubic-bezier(.2,.7,.2,1) .15s both; }
+.hero__a2{ opacity:0; animation:liu-fadeUp .9s cubic-bezier(.2,.7,.2,1) .3s both; }
+.hero__a3{ opacity:0; animation:liu-fadeUp .9s cubic-bezier(.2,.7,.2,1) .45s both; }
+.hero__a4{ opacity:0; animation:liu-fadeUp .9s cubic-bezier(.2,.7,.2,1) .6s both; max-width:620px; margin:0 auto 38px; }
+.hero__a5{ opacity:0; animation:liu-fadeUp .9s cubic-bezier(.2,.7,.2,1) .75s both; }
+.hero__line{ height:3px; width:64px; margin:0 auto 22px; background:var(--accent); border-radius:2px; animation:liu-drawline 1s ease .9s both; }
+.scrollcue{ position:absolute; bottom:96px; left:50%; transform:translateX(-50%); z-index:7; display:flex; flex-direction:column; align-items:center; gap:6px; color:rgba(255,255,255,.7); }
+.scrollcue span{ font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; }
+.scrollcue svg{ animation:liu-down 1.8s ease-in-out infinite; }
+
+/* Wave dividers */
+.wave{ position:absolute; left:0; bottom:-1px; width:100%; overflow:hidden; line-height:0; pointer-events:none; }
+.wave .layer{ display:flex; width:200%; }
+.wave svg{ width:50%; display:block; }
+
+/* Banner */
+.banner-sec{ padding:64px 0; background:#fff; }
+.banner{ display:flex; align-items:center; gap:32px; position:relative; overflow:hidden; background:linear-gradient(120deg,var(--navy) 0%, #143654 55%, #1b4a6e 100%); border-radius:24px; padding:30px 40px; box-shadow:0 24px 60px rgba(15,27,45,.28); transition:transform .3s, box-shadow .3s; }
+.banner:hover{ transform:translateY(-6px); box-shadow:0 32px 70px rgba(15,27,45,.4); }
+.banner .shimmer{ position:absolute; inset:0; background:repeating-linear-gradient(115deg, rgba(255,255,255,0) 0, rgba(170,210,230,.10) 50px, rgba(255,255,255,0) 110px); mix-blend-mode:screen; animation:liu-shimmer 7s ease-in-out infinite alternate; pointer-events:none; }
+.banner img.face{ position:relative; z-index:2; width:120px; height:120px; border-radius:50%; object-fit:cover; object-position:top; border:3px solid var(--accent); animation:liu-bob 5s ease-in-out infinite; }
+.banner .body{ position:relative; z-index:2; flex:1; }
+.banner h3{ font-weight:700; font-size:1.8rem; color:#fff; margin:0 0 6px; }
+.banner p{ color:#cfe0ec; margin:0 0 14px; font-size:1.02rem; }
+.banner .pill{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--navy); font-weight:600; padding:11px 22px; border-radius:999px; font-size:.95rem; }
+
+/* Sections */
+.section{ position:relative; padding:100px 0 130px; }
+.section--white{ background:#fff; }
+.section--cream{ background:var(--cream); }
+.section--plain{ padding:100px 0; background:#fff; }
+.section-header{ text-align:center; max-width:720px; margin:0 auto 56px; }
+.section-header h2{ font-weight:700; font-size:clamp(1.9rem,3.4vw,2.7rem); margin:0 0 16px; }
+.section-header p{ color:var(--muted); font-size:1.08rem; margin:0; }
+
+/* Mission grid */
+.mission{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.mcard{ background:#fff; border:1px solid #ece8de; border-radius:18px; padding:32px 26px; transition:transform .3s, box-shadow .3s, border-color .3s; }
+.mcard:hover{ transform:translateY(-10px); box-shadow:0 24px 50px rgba(15,27,45,.12); border-color:var(--accent); }
+.micon{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(201,162,39,.12); color:var(--accent); margin-bottom:18px; }
+.mcard h3{ font-size:1.3rem; margin:0 0 10px; }
+.mcard p{ color:var(--muted); font-size:.98rem; line-height:1.6; margin:0; }
+
+/* Spotlight */
+.spotlight{ display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:center; background:#fff; border-radius:24px; padding:44px; box-shadow:0 20px 50px rgba(15,27,45,.1); }
+.spotlight__media{ position:relative; }
+.spotlight__media .glow{ position:absolute; inset:-12px; border-radius:18px; background:radial-gradient(circle at 50% 40%, rgba(201,162,39,.25), transparent 70%); filter:blur(8px); }
+.spotlight__media img{ position:relative; width:100%; border-radius:12px; box-shadow:0 24px 50px rgba(15,27,45,.28); animation:liu-bob 6s ease-in-out infinite; }
+.spotlight h3{ font-size:2rem; margin:0 0 14px; }
+.stat{ display:flex; align-items:baseline; gap:12px; margin-bottom:16px; }
+.stat .num{ font-family:var(--serif); font-weight:800; font-size:3rem; color:var(--accent); line-height:1; }
+.stat .label{ font-size:1.05rem; color:var(--muted); font-weight:500; }
+.spotlight ul{ display:flex; flex-direction:column; gap:10px; margin:0 0 26px; }
+.spotlight li{ display:flex; align-items:center; gap:12px; }
+.spotlight li b{ color:var(--accent); }
+.row{ display:flex; gap:14px; flex-wrap:wrap; }
+
+/* Book / video cards */
+.grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.card{ background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(15,27,45,.08); transition:transform .3s, box-shadow .3s; display:block; }
+.card:hover{ transform:translateY(-10px); box-shadow:0 28px 56px rgba(15,27,45,.18); }
+.card__media{ overflow:hidden; background:#eee; }
+.card__media.book{ aspect-ratio:3/4; }
+.card__media.video{ aspect-ratio:16/9; position:relative; background:#111; }
+.card__media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.card:hover .card__media img{ transform:scale(1.07); }
+.card__body{ padding:24px; }
+.card__eyebrow{ display:block; font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+.card__body h3{ font-size:1.3rem; margin:0 0 10px; }
+.card__body p{ color:var(--muted); font-size:.95rem; line-height:1.6; margin:0 0 16px; }
+.card__link{ color:var(--accent); font-weight:600; font-size:.95rem; }
+.badge{ position:absolute; top:14px; left:14px; background:var(--accent); color:var(--navy); font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:5px 12px; border-radius:999px; }
+.play{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:62px; height:62px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; color:var(--navy); animation:liu-pulse 2.4s ease-in-out infinite; }
+
+/* CTA band */
+.cta-band{ position:relative; overflow:hidden; text-align:center; background:linear-gradient(130deg,#0a1422 0%, #103049 55%, #16466a 100%); border-radius:28px; padding:72px 40px; }
+.cta-band h2{ color:#fff; font-size:clamp(2rem,3.6vw,2.8rem); margin:0 0 16px; }
+.cta-band p{ color:#cfe0ec; font-size:1.1rem; margin:0 0 32px; }
+.cta-band .inner{ position:relative; z-index:2; max-width:660px; margin:0 auto; }
+.cta-band .actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.bubbles span{ position:absolute; bottom:0; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.6), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.2); pointer-events:none; }
+
+/* Footer */
+.footer{ position:relative; overflow:hidden; background:linear-gradient(130deg,#0a1422 0%, #103049 55%, #16466a 100%); color:#b9c6d6; padding:64px 0 32px; }
+.footer .grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1); position:relative; z-index:2; }
+.footer h4{ color:#fff; font-size:1.05rem; margin:0 0 16px; }
+.footer ul{ display:flex; flex-direction:column; gap:10px; }
+.footer a{ color:#b9c6d6; transition:color .2s; }
+.footer a:hover{ color:var(--accent); }
+.footer .brand span{ color:#fff; }
+.footer .brand{ margin-bottom:16px; }
+.footer .about{ font-size:.95rem; line-height:1.7; margin:0; max-width:320px; }
+.footer .bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:24px; font-size:.88rem; position:relative; z-index:2; }
+
+.progress{ position:fixed; top:0; left:0; height:3px; width:0; background:linear-gradient(90deg,#5aa9c8,var(--accent),#f0d77a); z-index:100; box-shadow:0 0 12px rgba(90,169,200,.7); }
+
+/* Responsive */
+@media (max-width:900px){
+  .menu-toggle{ display:block; }
+  .menu{ position:absolute; top:calc(100% + 14px); left:0; right:0; flex-direction:column; align-items:stretch; gap:4px; background:rgba(10,20,34,.97); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px; box-shadow:0 24px 60px rgba(0,0,0,.45); display:none; }
+  .menu.open{ display:flex; }
+  .menu a{ padding:12px 14px; border-bottom:0; border-radius:10px; }
+  .menu a:hover{ background:rgba(255,255,255,.06); }
+  .menu .btn-nav{ text-align:center; justify-content:center; margin-top:6px; }
+  .mission{ grid-template-columns:repeat(2,1fr); }
+  .spotlight{ grid-template-columns:1fr; }
+  .grid3{ grid-template-columns:1fr; }
+  .footer .grid{ grid-template-columns:1fr 1fr; }
+  .banner{ flex-direction:column; text-align:center; }
+}
+@media (max-width:560px){
+  .mission{ grid-template-columns:1fr; }
+  .footer .grid{ grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
 </head>
 <body>
 
-<!-- Header ============================================================= -->
-<header class="site-header">
-  <div class="container">
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a class="nav__brand" href="/">
-        <img src="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss-300x300.png" alt="Leben im Überfluss">
-        <span>Leben im<br>Überfluss</span>
-      </a>
-      <button class="nav__toggle" aria-label="Menü" aria-controls="menu" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <ul class="nav__menu" id="menu">
-        <li><a href="#ueber-uns">Über uns</a></li>
-        <li><a href="#buecher">Bücher</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
-        <li><a href="/hilfsprojekte/">Hilfsprojekte</a></li>
-        <li><a href="/kontakt/">Kontakt</a></li>
-      </ul>
+<div class="progress" id="progress"></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <img src="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss-300x300.png" alt="Leben im Überfluss">
+      <span>Leben im<br>Überfluss</span>
+    </a>
+    <button class="menu-toggle" aria-label="Menü" aria-controls="menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="menu" id="menu">
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#buecher">Bücher</a>
+      <a href="#videos">Videos</a>
+      <a href="/veranstaltungen/">Veranstaltungen</a>
+      <a href="/hilfsprojekte/">Hilfsprojekte</a>
+      <a href="/kontakt/">Kontakt</a>
+      <a href="#videos" class="btn-nav" data-ripple>Jetzt ansehen</a>
     </nav>
   </div>
 </header>
 
-<!-- Hero =============================================================== -->
-<section class="hero hero--video">
-  <div class="hero__video-wrap" aria-hidden="true">
-    <iframe class="hero__video"
-      src="https://www.youtube.com/embed/pgB_y_DGEBc?autoplay=1&mute=1&loop=1&playlist=pgB_y_DGEBc&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&disablekb=1&fs=0"
-      title="Leben im Überfluss – Hero"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen
-      loading="eager"></iframe>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <video autoplay muted loop playsinline preload="auto" poster="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss.png">
+      <source src="/wasser_fallwasser_flltfrau_hlt_Seedance_20_Fast_70393.mp4" type="video/mp4">
+    </video>
   </div>
-  <div class="hero__overlay" aria-hidden="true"></div>
-  <div class="container hero__inner">
-    <h1>Leben im Überfluss</h1>
-    <p>Gott möchte, dass du ein Leben in Fülle hast. Durch Predigten, prophetische Gebete, Proklamationen und Bücher helfen wir dir, genau dieses erfüllte Leben in Christus zu erfahren.</p>
-    <p class="hero__verse">„Der Dieb kommt nur, um zu stehlen, zu töten und zu verderben; ich bin gekommen, damit sie das Leben haben und es im Überfluss haben."<br><span>— Johannes 10,10</span></p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#videos">Predigten &amp; Gebete ansehen</a>
-      <a class="btn btn--ghost" href="#buecher">Unsere Bücher entdecken</a>
+  <div class="hero__overlay"></div>
+  <div class="hero__caustic"></div>
+  <div class="orb" style="top:14%; left:8%; width:280px; height:280px; background:radial-gradient(circle, rgba(201,162,39,.26), transparent 70%); filter:blur(20px); animation:liu-float 11s ease-in-out infinite;"></div>
+  <div class="orb" style="bottom:18%; right:10%; width:340px; height:340px; background:radial-gradient(circle, rgba(120,190,220,.22), transparent 70%); filter:blur(24px); animation:liu-float2 14s ease-in-out infinite;"></div>
+
+  <div class="bubbles" style="position:absolute; inset:0; z-index:4; pointer-events:none; overflow:hidden;">
+    <span style="left:12%; width:14px; height:14px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.75), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.25); border-radius:50%; position:absolute; bottom:10%; animation:liu-bubble 9s ease-in infinite 0s;"></span>
+    <span style="left:26%; width:9px; height:9px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.75), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.22); border-radius:50%; position:absolute; bottom:6%; animation:liu-bubble 7s ease-in infinite 1.5s;"></span>
+    <span style="left:44%; width:18px; height:18px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.7), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.22); border-radius:50%; position:absolute; bottom:14%; animation:liu-bubble 11s ease-in infinite .8s;"></span>
+    <span style="left:62%; width:11px; height:11px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.75), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.22); border-radius:50%; position:absolute; bottom:8%; animation:liu-bubble 8s ease-in infinite 2.2s;"></span>
+    <span style="left:78%; width:15px; height:15px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.7), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.22); border-radius:50%; position:absolute; bottom:12%; animation:liu-bubble 10s ease-in infinite 1s;"></span>
+    <span style="left:90%; width:8px; height:8px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.75), rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.2); border-radius:50%; position:absolute; bottom:5%; animation:liu-bubble 6.5s ease-in infinite 3s;"></span>
+  </div>
+
+  <div class="hero__inner">
+    <span class="eyebrow hero__a1">Ein christlicher Dienst aus der Schweiz</span>
+    <h1 class="hero__a2">Leben im Überfluss</h1>
+    <p class="lead hero__a3">Gott möchte, dass du ein Leben in Fülle hast. Durch Predigten, prophetische Gebete, Proklamationen und Bücher helfen wir dir, dieses erfüllte Leben in Christus zu erfahren.</p>
+    <div class="hero__a4">
+      <div class="hero__line"></div>
+      <p class="verse">„Ich bin gekommen, damit sie das Leben haben und es im Überfluss haben."</p>
+      <span class="verse-ref">— Johannes 10,10</span>
+    </div>
+    <div class="hero__actions hero__a5">
+      <a href="#videos" class="btn btn--gold" data-ripple>Predigten &amp; Gebete ansehen</a>
+      <a href="#buecher" class="btn btn--ghost" data-ripple>Unsere Bücher entdecken</a>
+    </div>
+  </div>
+
+  <div class="scrollcue">
+    <span>Scrollen</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+  </div>
+
+  <div class="wave" style="z-index:6;">
+    <div class="layer" style="animation:liu-wave 18s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:70px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="rgba(255,255,255,.45)"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:70px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="rgba(255,255,255,.45)"></path></svg>
+    </div>
+    <div class="layer" style="margin-top:-58px; animation:liu-wave 11s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:80px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:80px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
     </div>
   </div>
 </section>
 
-<!-- Taste and See Banner =============================================== -->
-<section class="section section--tight">
+<!-- BANNER -->
+<section class="banner-sec">
   <div class="container">
-    <a href="/taste-and-see/" class="tas-promo-banner">
-      <div class="tas-promo-bg-shape"></div>
-      <img src="/wp-content/uploads/2026/04/elodie-profilbild.png" alt="Elodie Massua" class="tas-promo-img tas-promo-desktop-img" loading="lazy">
-      <div class="tas-promo-mobile-images">
-        <img src="/wp-content/uploads/2026/04/elodie-profilbild.png" alt="Elodie Massua" class="tas-promo-img" loading="lazy">
-        <img src="/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda" class="tas-promo-img" loading="lazy">
+    <a href="/taste-and-see/" class="banner reveal" data-ripple>
+      <div class="shimmer"></div>
+      <div class="orb" style="top:-60px; right:-40px; width:260px; height:260px; background:radial-gradient(circle, rgba(201,162,39,.32), transparent 70%); filter:blur(10px);"></div>
+      <img class="face" src="/wp-content/uploads/2026/04/elodie-profilbild.png" alt="Elodie Massua">
+      <div class="body">
+        <h3>Taste and See</h3>
+        <p>Am Tisch mit Jesus – ein besonderer Nachmittag voller Begegnung.</p>
+        <span class="pill">Jetzt anmelden &amp; dabei sein →</span>
       </div>
-      <div class="tas-promo-content">
-        <h3 class="tas-promo-title">Taste and See</h3>
-        <p class="tas-promo-subtitle">Am Tisch mit Jesus – Ein besonderer Nachmittag</p>
-        <span class="tas-promo-btn">Jetzt anmelden &amp; dabei sein!</span>
-      </div>
-      <img src="/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda" class="tas-promo-img tas-promo-desktop-img" loading="lazy">
+      <img class="face" style="animation-delay:.8s;" src="/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda">
     </a>
   </div>
 </section>
 
-<!-- Mission ============================================================ -->
-<section class="section" id="ueber-uns">
+<!-- MISSION -->
+<section class="section section--white" id="ueber-uns">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="eyebrow">Über unseren Dienst</span>
       <h2>Ein Erbe der Fülle in Christus</h2>
-      <p>Wir glauben, dass ein Leben in Fülle unser Erbe ist, weil Jesus Christus es uns persönlich versprochen hat. Dieses Versprechen dürfen wir glauben und in unserem Leben proklamieren.</p>
+      <p>Wir glauben, dass ein Leben in Fülle unser Erbe ist, weil Jesus es uns persönlich versprochen hat. Dieses Versprechen dürfen wir glauben und in unserem Leben proklamieren.</p>
       <hr class="divider">
     </div>
-
     <div class="mission">
-      <article class="mission__item">
-        <div class="mission__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 2 8h10c0-3 2-5 2-8a7 7 0 0 0-7-7z"/><path d="M9 20h6"/><path d="M10 23h4"/></svg>
-        </div>
+      <article class="mcard reveal">
+        <div class="micon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 2 8h10c0-3 2-5 2-8a7 7 0 0 0-7-7z"></path><path d="M9 20h6"></path><path d="M10 23h4"></path></svg></div>
         <h3>Inspirierende Predigten</h3>
         <p>Biblische Botschaften, die dein geistliches Leben vertiefen und dich in deiner Identität in Christus stärken.</p>
       </article>
-      <article class="mission__item">
-        <div class="mission__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
+      <article class="mcard reveal" style="transition-delay:.12s;">
+        <div class="micon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
         <h3>Prophetische Gebete</h3>
         <p>Proklamationen und Gebete, mit denen du dein Leben, deine Familie und deine Nation segnest.</p>
       </article>
-      <article class="mission__item">
-        <div class="mission__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
+      <article class="mcard reveal" style="transition-delay:.24s;">
+        <div class="micon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
         <h3>Bücher &amp; Studien</h3>
-        <p>Tiefgehende Werke über Gebet, Identität in Christus und geistliches Wachstum – in mehreren Sprachen erhältlich.</p>
+        <p>Tiefgehende Werke über Gebet, Identität in Christus und geistliches Wachstum – in mehreren Sprachen.</p>
       </article>
-      <article class="mission__item">
-        <div class="mission__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
+      <article class="mcard reveal" style="transition-delay:.36s;">
+        <div class="micon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
         <h3>Hilfsprojekte</h3>
         <p>Wir setzen praktische Nächstenliebe um und unterstützen Menschen in Not – lokal und international.</p>
       </article>
     </div>
   </div>
+  <div class="wave" style="z-index:3;">
+    <div class="layer" style="animation:liu-wave 20s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:64px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#f7f5f0"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:64px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#f7f5f0"></path></svg>
+    </div>
+  </div>
 </section>
 
-<!-- Books ============================================================== -->
-<section class="section section--alt" id="buecher">
+<!-- BOOKS -->
+<section class="section section--cream" id="buecher">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="eyebrow">Unsere Veröffentlichungen</span>
       <h2>Unsere neuen Bücher</h2>
       <p>Entdecke inspirierende Bücher über Gebet, Identität in Christus und geistliches Wachstum.</p>
       <hr class="divider">
     </div>
 
-    <!-- Featured book spotlight -->
-    <div class="spotlight">
+    <div class="spotlight reveal">
       <div class="spotlight__media">
-        <img src="/wp-content/uploads/2024/07/GEBETSBUCH-FLYER-DEUTSCH-600x849.jpg"
-             alt="Buchcover: Nimm deine Nation in Besitz">
+        <div class="glow"></div>
+        <img src="/wp-content/uploads/2024/07/GEBETSBUCH-FLYER-DEUTSCH-600x849.jpg" alt="Nimm deine Nation in Besitz">
       </div>
-      <div class="spotlight__body">
+      <div>
         <span class="eyebrow">Neuerscheinung · Hardcover &amp; E-Book</span>
         <h3>Nimm deine Nation in Besitz</h3>
-        <p><strong>Über 600 Gebete für deine Nation.</strong> Unsere Nationen erleiden Gewalt; der Feind greift in der geistlichen Welt an. Christen sind berufen, wie Daniel und seine Freunde das Ruder ihrer Nation mit Gebeten und Proklamationen an sich zu reißen.</p>
+        <div class="stat">
+          <span class="num" data-count="600">0</span>
+          <span class="label">Gebete für deine Nation</span>
+        </div>
+        <p style="color:var(--muted); line-height:1.7;">Christen sind berufen, wie Daniel und seine Freunde das Ruder ihrer Nation mit Gebeten und Proklamationen an sich zu reißen.</p>
         <ul>
-          <li>Gebete für Regierung, Justiz und Gesellschaft</li>
-          <li>Proklamationen der Herrschaft Jesu</li>
-          <li>Biblische Grundlagen für geistliche Autorität</li>
+          <li><b>✦</b> Gebete für Regierung, Justiz und Gesellschaft</li>
+          <li><b>✦</b> Proklamationen der Herrschaft Jesu</li>
+          <li><b>✦</b> Biblische Grundlagen für geistliche Autorität</li>
         </ul>
-        <div class="hero__actions" style="justify-content:flex-start">
-          <a class="btn btn--primary" href="https://amzn.eu/d/0i2PBIld" target="_blank" rel="noopener">Auf Amazon ansehen</a>
-          <a class="btn btn--outline" href="/kontakt/">Fragen? Kontaktiere uns</a>
+        <div class="row">
+          <a class="btn btn--gold" href="https://amzn.eu/d/0i2PBIld" target="_blank" rel="noopener" data-ripple>Auf Amazon ansehen</a>
+          <a class="btn btn--outline" href="/kontakt/" data-ripple>Fragen? Kontaktiere uns</a>
         </div>
       </div>
     </div>
 
-    <!-- Book grid -->
-    <div class="grid grid--3" style="margin-top:64px">
-      <article class="card book-card">
-        <div class="card__media">
-          <img src="https://m.media-amazon.com/images/I/61XSS1Y+7OL._SL1499_.jpg"
-               alt="Buchcover: ICH BIN..." loading="lazy">
-        </div>
+    <div class="grid3" style="margin-top:48px;">
+      <a class="card reveal" href="https://amzn.eu/d/07fGE9dM" target="_blank" rel="noopener">
+        <div class="card__media book"><img src="https://m.media-amazon.com/images/I/61XSS1Y+7OL._SL1499_.jpg" alt="ICH BIN…" loading="lazy"></div>
         <div class="card__body">
           <span class="card__eyebrow">Identität in Christus</span>
           <h3>ICH BIN…</h3>
-          <p>Ein kraftvolles Werk über die Identität in Christus und wie du sie in deinem Alltag proklamierst und lebst.</p>
-          <div class="card__footer">
-            <a class="card__link" href="https://amzn.eu/d/07fGE9dM" target="_blank" rel="noopener">Auf Amazon ansehen</a>
-          </div>
+          <p>Ein kraftvolles Werk über die Identität in Christus und wie du sie im Alltag proklamierst und lebst.</p>
+          <span class="card__link">Auf Amazon ansehen →</span>
         </div>
-      </article>
-
-      <article class="card book-card">
-        <div class="card__media">
-          <img src="/wp-content/uploads/2024/07/GEBETSBUCH-FLYER-DEUTSCH-480x679.jpg"
-               alt="Buchcover: Nimm deine Nation in Besitz" loading="lazy">
-        </div>
+      </a>
+      <a class="card reveal" style="transition-delay:.14s;" href="https://amzn.eu/d/0i2PBIld" target="_blank" rel="noopener">
+        <div class="card__media book"><img src="/wp-content/uploads/2024/07/GEBETSBUCH-FLYER-DEUTSCH-480x679.jpg" alt="Nimm deine Nation in Besitz" loading="lazy"></div>
         <div class="card__body">
           <span class="card__eyebrow">Gebete · Proklamationen</span>
           <h3>Nimm deine Nation in Besitz</h3>
-          <p>Über 600 Gebete und Proklamationen, um die Herrschaft Jesu über deine Nation zu erklären und durchzusetzen.</p>
-          <div class="card__footer">
-            <a class="card__link" href="https://amzn.eu/d/0i2PBIld" target="_blank" rel="noopener">Auf Amazon ansehen</a>
-          </div>
+          <p>Über 600 Gebete und Proklamationen, um die Herrschaft Jesu über deine Nation zu erklären.</p>
+          <span class="card__link">Auf Amazon ansehen →</span>
         </div>
-      </article>
-
-      <article class="card book-card">
-        <div class="card__media">
-          <img src="https://m.media-amazon.com/images/I/61cnAWAeSGL._SL1499_.jpg"
-               alt="Buchcover: Gebetskraftwerk Teil 1 – Nimm deine Identität in Christus in Besitz" loading="lazy">
-        </div>
+      </a>
+      <a class="card reveal" style="transition-delay:.28s;" href="https://amzn.eu/d/0iN5FMBm" target="_blank" rel="noopener">
+        <div class="card__media book"><img src="https://m.media-amazon.com/images/I/61cnAWAeSGL._SL1499_.jpg" alt="Gebetskraftwerk Teil 1" loading="lazy"></div>
         <div class="card__body">
           <span class="card__eyebrow">Gebetskraftwerk · Teil 1</span>
-          <h3>Nimm deine Identität in Christus in Besitz</h3>
-          <p>Hardcover &amp; Kindle E-Book. Verfügbar auf Deutsch, Englisch, Französisch, Portugiesisch, Spanisch und Italienisch.</p>
-          <div class="card__footer">
-            <a class="card__link" href="https://amzn.eu/d/0iN5FMBm" target="_blank" rel="noopener">Auf Amazon ansehen</a>
-          </div>
+          <h3>Identität in Christus in Besitz</h3>
+          <p>Hardcover &amp; Kindle. Verfügbar auf Deutsch, Englisch, Französisch, Portugiesisch, Spanisch und Italienisch.</p>
+          <span class="card__link">Auf Amazon ansehen →</span>
         </div>
-      </article>
+      </a>
+    </div>
+  </div>
+  <div class="wave" style="z-index:3;">
+    <div class="layer" style="animation:liu-wave 17s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:64px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:64px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
     </div>
   </div>
 </section>
 
-<!-- Videos / Playlists =================================================== -->
-<section class="section" id="videos">
+<!-- VIDEOS -->
+<section class="section--plain" id="videos">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="eyebrow">YouTube · Predigtserien</span>
       <h2>Videos &amp; Playlists</h2>
-      <p>Hier sind einige Sammlungen unserer Predigtserien und Gebete auf unserer YouTube-Seite.</p>
+      <p>Einige Sammlungen unserer Predigtserien und Gebete auf unserem YouTube-Kanal.</p>
       <hr class="divider">
     </div>
-
-    <div class="grid grid--3">
-
-      <!-- Playlist 1: Im Übernatürlichen Wandeln -->
-      <a class="card video-card" href="https://www.youtube.com/watch?v=7ACK_P3ATIw&list=PLL241H1VbgLliOcL5qxTILCcNgXqzoQVY" target="_blank" rel="noopener">
-        <div class="card__media">
-          <img src="https://i.ytimg.com/vi/7ACK_P3ATIw/hqdefault.jpg"
-               alt="Playlist: Im Übernatürlichen Wandeln" loading="lazy">
-          <span class="card__badge">Serie</span>
-          <span class="card__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
+    <div class="grid3">
+      <a class="card reveal" href="https://www.youtube.com/watch?v=7ACK_P3ATIw&amp;list=PLL241H1VbgLliOcL5qxTILCcNgXqzoQVY" target="_blank" rel="noopener">
+        <div class="card__media video">
+          <img src="https://i.ytimg.com/vi/7ACK_P3ATIw/hqdefault.jpg" alt="Im Übernatürlichen Wandeln" loading="lazy">
+          <span class="badge">Serie</span>
+          <span class="play"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
         </div>
         <div class="card__body">
           <span class="card__eyebrow">Predigtserie · Playlist</span>
           <h3>Im Übernatürlichen Wandeln</h3>
           <p>Eine tiefgehende Serie über das Leben im Übernatürlichen – wie du die Kraft Gottes im Alltag erfährst.</p>
-          <div class="card__footer">
-            <span class="card__link">Playlist ansehen</span>
-          </div>
         </div>
       </a>
-
-      <!-- Playlist 2: Proklamations Gebet -->
-      <a class="card video-card" href="https://www.youtube.com/watch?v=INfrP-0H8-M&list=PLL241H1VbgLlpEhtt-0XrkC8UpQQ1BOoI" target="_blank" rel="noopener">
-        <div class="card__media">
-          <img src="https://i.ytimg.com/vi/INfrP-0H8-M/hqdefault.jpg"
-               alt="Playlist: Proklamations Gebete" loading="lazy">
-          <span class="card__badge">Gebete</span>
-          <span class="card__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
+      <a class="card reveal" style="transition-delay:.14s;" href="https://www.youtube.com/watch?v=INfrP-0H8-M&amp;list=PLL241H1VbgLlpEhtt-0XrkC8UpQQ1BOoI" target="_blank" rel="noopener">
+        <div class="card__media video">
+          <img src="https://i.ytimg.com/vi/INfrP-0H8-M/hqdefault.jpg" alt="Proklamations Gebete" loading="lazy">
+          <span class="badge">Gebete</span>
+          <span class="play" style="animation-delay:.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
         </div>
         <div class="card__body">
           <span class="card__eyebrow">Proklamationen · Playlist</span>
           <h3>Proklamations Gebet</h3>
           <p>Kraftvolle Proklamationen und Gebete – Psalm 91, Kettenbrecher, Gebet für Israel und vieles mehr.</p>
-          <div class="card__footer">
-            <span class="card__link">Playlist ansehen</span>
-          </div>
         </div>
       </a>
-
-      <!-- Playlist 3: Grundlagen der Gnade und des Glaubens -->
-      <a class="card video-card" href="https://www.youtube.com/playlist?list=PLL241H1VbgLkSdsDm-1BdV4sZUpRkHMy4" target="_blank" rel="noopener">
-        <div class="card__media">
-          <img src="https://i.ytimg.com/vi/Hmc2utcsWDs/hqdefault.jpg"
-               alt="Playlist: Grundlagen der Gnade und des Glaubens" loading="lazy">
-          <span class="card__badge">Grundlagen</span>
-          <span class="card__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
+      <a class="card reveal" style="transition-delay:.28s;" href="https://www.youtube.com/playlist?list=PLL241H1VbgLkSdsDm-1BdV4sZUpRkHMy4" target="_blank" rel="noopener">
+        <div class="card__media video">
+          <img src="https://i.ytimg.com/vi/Hmc2utcsWDs/hqdefault.jpg" alt="Grundlagen der Gnade und des Glaubens" loading="lazy">
+          <span class="badge">Grundlagen</span>
+          <span class="play" style="animation-delay:.8s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
         </div>
         <div class="card__body">
           <span class="card__eyebrow">Lehrserie · Playlist</span>
           <h3>Grundlagen der Gnade und des Glaubens</h3>
           <p>Biblische Grundlagen über Gnade und Glauben – das Fundament für ein siegreiches Leben in Christus.</p>
-          <div class="card__footer">
-            <span class="card__link">Playlist ansehen</span>
-          </div>
         </div>
       </a>
-
     </div>
-
-    <div class="text-center mt-lg">
-      <a class="btn btn--youtube" href="https://www.youtube.com/@Leben_im_Ueberfluss" target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+    <div class="reveal" style="text-align:center; margin-top:48px;">
+      <a class="btn btn--yt" href="https://www.youtube.com/@Leben_im_Ueberfluss" target="_blank" rel="noopener" data-ripple>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"></path></svg>
         Unseren YouTube-Kanal besuchen
       </a>
     </div>
   </div>
 </section>
 
-<!-- CTA band =========================================================== -->
-<section class="section">
+<!-- CTA -->
+<section class="section section--white" id="hilfe" style="padding:100px 0 150px;">
   <div class="container">
-    <div class="cta-band">
-      <h2>Besuche unsere YouTube-Seite</h2>
-      <p>Entdecke jede Woche neue Predigten, Proklamationen und prophetische Gebete – kostenlos und für jeden zugänglich.</p>
-      <div class="hero__actions" style="justify-content:center">
-        <a class="btn btn--youtube" href="https://www.youtube.com/@Leben_im_Ueberfluss" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
-          YouTube abonnieren
-        </a>
-        <a class="btn btn--ghost" href="/kontakt/">Kontakt aufnehmen</a>
+    <div class="cta-band reveal">
+      <div class="shimmer" style="position:absolute; inset:0; background:repeating-linear-gradient(118deg, rgba(255,255,255,0) 0, rgba(170,210,230,.10) 55px, rgba(255,255,255,0) 120px); mix-blend-mode:screen; animation:liu-shimmer 8s ease-in-out infinite alternate; pointer-events:none;"></div>
+      <div class="orb" style="top:-80px; left:-40px; width:320px; height:320px; background:radial-gradient(circle, rgba(201,162,39,.22), transparent 70%); filter:blur(10px); animation:liu-float 12s ease-in-out infinite;"></div>
+      <div class="orb" style="bottom:-90px; right:-30px; width:300px; height:300px; background:radial-gradient(circle, rgba(120,190,220,.2), transparent 70%); filter:blur(12px); animation:liu-float2 15s ease-in-out infinite;"></div>
+      <div class="bubbles" style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
+        <span style="left:18%; width:12px; height:12px; animation:liu-bubble 9s ease-in infinite .4s;"></span>
+        <span style="left:38%; width:8px; height:8px; animation:liu-bubble 7s ease-in infinite 1.6s;"></span>
+        <span style="left:58%; width:14px; height:14px; animation:liu-bubble 10.5s ease-in infinite .9s;"></span>
+        <span style="left:78%; width:10px; height:10px; animation:liu-bubble 8s ease-in infinite 2.4s;"></span>
       </div>
+      <div class="inner">
+        <h2>Besuche unsere YouTube-Seite</h2>
+        <p>Entdecke jede Woche neue Predigten, Proklamationen und prophetische Gebete – kostenlos und für jeden zugänglich.</p>
+        <div class="actions">
+          <a class="btn btn--gold" href="https://www.youtube.com/@Leben_im_Ueberfluss" target="_blank" rel="noopener" data-ripple>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"></path></svg>
+            YouTube abonnieren
+          </a>
+          <a class="btn btn--ghost" href="/kontakt/" data-ripple>Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave" style="z-index:3;">
+    <div class="layer" style="animation:liu-wave 19s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:60px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="rgba(10,20,34,.5)"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:60px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="rgba(10,20,34,.5)"></path></svg>
+    </div>
+    <div class="layer" style="margin-top:-48px; animation:liu-wave 13s linear infinite;">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:70px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#0a1422"></path></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:70px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#0a1422"></path></svg>
     </div>
   </div>
 </section>
 
-<!-- Footer ============================================================= -->
-<footer class="site-footer">
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="shimmer" style="position:absolute; inset:0; background:repeating-linear-gradient(118deg, rgba(255,255,255,0) 0, rgba(170,210,230,.09) 55px, rgba(255,255,255,0) 120px); mix-blend-mode:screen; animation:liu-shimmer 9s ease-in-out infinite alternate; pointer-events:none;"></div>
+  <div class="bubbles" style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
+    <span style="left:14%; width:11px; height:11px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.18); border-radius:50%; position:absolute; bottom:0; animation:liu-bubble 10s ease-in infinite .6s;"></span>
+    <span style="left:42%; width:8px; height:8px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.18); border-radius:50%; position:absolute; bottom:0; animation:liu-bubble 8s ease-in infinite 2s;"></span>
+    <span style="left:68%; width:13px; height:13px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.18); border-radius:50%; position:absolute; bottom:0; animation:liu-bubble 11s ease-in infinite 1.2s;"></span>
+    <span style="left:86%; width:9px; height:9px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.18); border-radius:50%; position:absolute; bottom:0; animation:liu-bubble 7.5s ease-in infinite 3s;"></span>
+  </div>
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss-300x300.png" alt="Leben im Überfluss">
-        <p>Ein christlicher Dienst für Predigten, prophetische Gebete, Proklamationen und Bücher – damit du ein Leben in Fülle erfährst.</p>
+    <div class="grid">
+      <div>
+        <div class="brand" style="display:flex; align-items:center; gap:12px;">
+          <img src="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss-300x300.png" alt="Leben im Überfluss" style="width:46px; height:46px; border-radius:50%;">
+          <span style="font-family:var(--serif); font-weight:700; font-size:1.05rem; line-height:1.05;">Leben im<br>Überfluss</span>
+        </div>
+        <p class="about">Ein christlicher Dienst für Predigten, prophetische Gebete, Proklamationen und Bücher – damit du ein Leben in Fülle erfährst.</p>
       </div>
       <div>
         <h4>Dienst</h4>
@@ -348,15 +563,91 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="bottom">
       <span>© <span id="year"></span> Leben im Überfluss · lebenimueberfluss.ch</span>
       <span>Mit Liebe und Gebet aus der Schweiz.</span>
     </div>
   </div>
 </footer>
 
-<script src="/assets/script.js" defer></script>
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  // Jahr
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+  // Mobile-Menü
+  var toggle = document.querySelector('.menu-toggle');
+  var menu = document.getElementById('menu');
+  if(toggle && menu){
+    toggle.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  // Scroll-Reveal
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Count-up
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ runCount(e.target); cio.unobserve(e.target); }
+    });
+  }, { threshold:0.6 });
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+  function runCount(el){
+    var target = parseInt(el.getAttribute('data-count'),10) || 0;
+    var dur = 1500, start = performance.now();
+    function tick(now){
+      var p = Math.min(1,(now-start)/dur);
+      var eased = 1 - Math.pow(1-p,3);
+      el.textContent = Math.round(target*eased).toLocaleString('de-CH');
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Wasser-Ripple auf Buttons
+  document.querySelectorAll('[data-ripple]').forEach(function(btn){
+    if(getComputedStyle(btn).position === 'static') btn.style.position='relative';
+    btn.style.overflow='hidden';
+    btn.addEventListener('pointerdown', function(ev){
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.1;
+      var r = document.createElement('span');
+      r.style.cssText = 'position:absolute; pointer-events:none; border-radius:50%; z-index:0; background:radial-gradient(circle, rgba(255,255,255,.55), rgba(255,255,255,.12) 60%, rgba(255,255,255,0) 72%); transform:scale(0); animation:liu-ripple .65s ease-out forwards; left:'+(ev.clientX-rect.left-size/2)+'px; top:'+(ev.clientY-rect.top-size/2)+'px; width:'+size+'px; height:'+size+'px;';
+      btn.appendChild(r);
+      setTimeout(function(){ r.remove(); }, 680);
+    });
+  });
+
+  // Header + Fortschrittsleiste
+  var header = document.getElementById('header');
+  var bar = document.getElementById('progress');
+  function onScroll(){
+    var yy = window.scrollY || window.pageYOffset;
+    if(header) header.classList.toggle('scrolled', yy > 40);
+    if(bar){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h>0 ? Math.min(100, (yy/h)*100) : 0) + '%';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll, { passive:true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
