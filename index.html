@@ -112,20 +112,6 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
 .wave .layer{ display:flex; width:200%; }
 .wave svg{ width:50%; display:block; }
 
-/* Banner */
-.banner-sec{ padding:64px 0; background:#fff; }
-.banner{ display:flex; align-items:center; gap:32px; position:relative; overflow:hidden; background:linear-gradient(120deg,var(--navy) 0%, #143654 55%, #1b4a6e 100%); border-radius:24px; padding:30px 40px; box-shadow:0 24px 60px rgba(15,27,45,.28); transition:transform .3s, box-shadow .3s; }
-.banner:hover{ transform:translateY(-6px); box-shadow:0 32px 70px rgba(15,27,45,.4); }
-.banner .shimmer{ position:absolute; inset:0; background:repeating-linear-gradient(115deg, rgba(255,255,255,0) 0, rgba(170,210,230,.10) 50px, rgba(255,255,255,0) 110px); mix-blend-mode:screen; animation:liu-shimmer 7s ease-in-out infinite alternate; pointer-events:none; }
-.banner img.face{ position:relative; z-index:2; width:120px; height:120px; border-radius:50%; object-fit:cover; object-position:top; border:3px solid var(--accent); animation:liu-bob 5s ease-in-out infinite; }
-.banner .body{ position:relative; z-index:2; flex:1; }
-.banner h3{ font-weight:700; font-size:1.8rem; color:#fff; margin:0 0 6px; }
-.banner p{ color:#cfe0ec; margin:0 0 14px; font-size:1.02rem; }
-.banner .pill{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--navy); font-weight:600; padding:11px 22px; border-radius:999px; font-size:.95rem; }
-.banner-video{ display:block; position:relative; overflow:hidden; border-radius:24px; line-height:0; box-shadow:0 24px 60px rgba(15,27,45,.28); transition:transform .3s, box-shadow .3s; }
-.banner-video:hover{ transform:translateY(-6px); box-shadow:0 32px 70px rgba(15,27,45,.4); }
-.banner-video video{ width:100%; height:auto; display:block; }
-
 /* Sections */
 .section{ position:relative; padding:100px 0 130px; }
 .section--white{ background:#fff; }
@@ -208,7 +194,6 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
   .spotlight{ grid-template-columns:1fr; }
   .grid3{ grid-template-columns:1fr; }
   .footer .grid{ grid-template-columns:1fr 1fr; }
-  .banner{ flex-direction:column; text-align:center; }
 }
 @media (max-width:560px){
   .mission{ grid-template-columns:1fr; }
@@ -249,8 +234,8 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero__media">
-    <video autoplay muted loop playsinline preload="auto" poster="/wp-content/uploads/2024/07/cropped-icon-leben-im-ueberfluss.png">
-      <source src="/wasser_fallwasser_flltfrau_hlt_Seedance_20_Fast_70393.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="/wp-content/uploads/2026/03/banner-video-lebenueberfluss2.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero__overlay"></div>
@@ -296,17 +281,6 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
       <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:80px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
       <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:80px;"><path d="M0,55 C240,110 480,5 720,55 C960,105 1200,5 1440,55 L1440,120 L0,120 Z" fill="#fff"></path></svg>
     </div>
-  </div>
-</section>
-
-<!-- BANNER -->
-<section class="banner-sec">
-  <div class="container">
-    <a href="/taste-and-see/" class="banner-video reveal" data-ripple aria-label="Taste and See – Am Tisch mit Jesus · jetzt anmelden">
-      <video autoplay muted loop playsinline preload="metadata">
-        <source src="/wp-content/uploads/2026/03/banner-video-lebenueberfluss2.mp4" type="video/mp4">
-      </video>
-    </a>
   </div>
 </section>
 
