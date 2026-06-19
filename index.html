@@ -122,6 +122,9 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
 .banner h3{ font-weight:700; font-size:1.8rem; color:#fff; margin:0 0 6px; }
 .banner p{ color:#cfe0ec; margin:0 0 14px; font-size:1.02rem; }
 .banner .pill{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--navy); font-weight:600; padding:11px 22px; border-radius:999px; font-size:.95rem; }
+.banner-video{ display:block; position:relative; overflow:hidden; border-radius:24px; line-height:0; box-shadow:0 24px 60px rgba(15,27,45,.28); transition:transform .3s, box-shadow .3s; }
+.banner-video:hover{ transform:translateY(-6px); box-shadow:0 32px 70px rgba(15,27,45,.4); }
+.banner-video video{ width:100%; height:auto; display:block; }
 
 /* Sections */
 .section{ position:relative; padding:100px 0 130px; }
@@ -299,16 +302,10 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--navy); font-weight:700; line-
 <!-- BANNER -->
 <section class="banner-sec">
   <div class="container">
-    <a href="/taste-and-see/" class="banner reveal" data-ripple>
-      <div class="shimmer"></div>
-      <div class="orb" style="top:-60px; right:-40px; width:260px; height:260px; background:radial-gradient(circle, rgba(201,162,39,.32), transparent 70%); filter:blur(10px);"></div>
-      <img class="face" src="/wp-content/uploads/2026/04/elodie-profilbild.png" alt="Elodie Massua">
-      <div class="body">
-        <h3>Taste and See</h3>
-        <p>Am Tisch mit Jesus – ein besonderer Nachmittag voller Begegnung.</p>
-        <span class="pill">Jetzt anmelden &amp; dabei sein →</span>
-      </div>
-      <img class="face" style="animation-delay:.8s;" src="/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda">
+    <a href="/taste-and-see/" class="banner-video reveal" data-ripple aria-label="Taste and See – Am Tisch mit Jesus · jetzt anmelden">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="/wp-content/uploads/2026/03/banner-video-lebenueberfluss2.mp4" type="video/mp4">
+      </video>
     </a>
   </div>
 </section>
