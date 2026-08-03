@@ -431,62 +431,12 @@ ul.et_pb_social_media_follow{list-style-type:none!important;margin:0 0 22px;padd
  display: inline-block;
  max-width: 100%;
  }
- #registration-form {
- max-width: 600px;
- margin: 0 auto;
- display: flex;
- flex-direction: column;
- gap: 1.2rem;
- width: 100%;
- }
- input, textarea {
- width: 100%;
- padding: clamp(0.8rem, 3vw, 1.1rem);
- border: 2px solid rgba(0,0,0,0.08);
- border-radius: 14px;
- font-family: var(--font-main);
- font-size: 1rem;
- background-color: #fff;
- transition: border-color 0.3s;
- box-sizing: border-box;
- -webkit-appearance: none;
- appearance: none;
- }
- input:focus, textarea:focus {
- outline: none;
- border-color: var(--primary-color);
- }
- button[type="submit"] {
- width: 100%;
- background: linear-gradient(135deg, var(--secondary-color), #2e4a70);
- color: white;
- border: none;
- padding: 1.2rem;
- font-size: 1.1rem;
- border-radius: 16px;
- cursor: pointer;
- font-weight: 600;
- box-shadow: 0 8px 20px rgba(67, 101, 148, 0.3);
- transition: transform 0.2s, box-shadow 0.2s;
- margin-top: 0.5rem;
- -webkit-appearance: none;
- appearance: none;
- }
- button[type="submit"]:active { transform: scale(0.98); }
  footer {
  text-align: center;
  padding: 2rem 1rem 4rem;
  color: #4a4a4a;
  font-size: 0.85rem;
  }
- .hidden-msg { display: none !important; }
- #success-message {
- background: #f1f8e9;
- border: 2px solid var(--accent-color);
- padding: 2.5rem;
- border-radius: 24px;
- }
- #success-message h3 { color: var(--accent-color); }
  .bold { font-weight: 600; }
  @media (max-width: 480px) {
  .container { padding: 0.75rem; }
@@ -567,27 +517,7 @@ ul.et_pb_social_media_follow{list-style-type:none!important;margin:0 0 22px;padd
    .host-text { width: 100%; }
  }
 
- /* GDPR checkboxes */
- .consent-check {
-   display: flex; gap: 10px; align-items: flex-start;
-   margin: .8rem 0; padding: .8rem 1rem;
-   background: rgba(67,101,148,.04);
-   border: 1px solid rgba(67,101,148,.15);
-   border-radius: 10px;
-   font-size: .9rem; line-height: 1.5; color: #444; text-align: left;
-   cursor: pointer;
- }
- .consent-check input[type="checkbox"] {
-   margin-top: 3px; flex: none;
-   width: 18px; height: 18px; accent-color: #436594;
- }
- .consent-check span { flex: 1; }
- .consent-check em {
-   font-style: normal; color: #b886b5; font-weight: 600;
- }
- .consent-check a { color: #436594; text-decoration: underline; }
-
- /* Event meta info below form */
+ /* Event meta info */
  .event-meta {
    margin: 1.2rem 0 0;
    padding: 1rem 1.2rem;
@@ -599,37 +529,7 @@ ul.et_pb_social_media_follow{list-style-type:none!important;margin:0 0 22px;padd
  }
  .event-meta span { display: inline-block; margin-top: .4rem; }
  .event-meta a { color: #436594; text-decoration: underline; }
- </style><div class="container"><div class="host-strip" aria-label="Gastgebende Gemeinde Der Weg e.V."><div class="host-logo" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="2" width="4" height="20" fill="#ffd700"/><rect x="4" y="9" width="16" height="4" fill="#ffd700"/></svg></div><div class="host-text"><span class="host-eyebrow">Gastgebende Gemeinde</span><h3>Der Weg e.V.</h3><p>Reutlingen</p></div></div><header class="glass-panel hero-section"><div class="date-badge">27. JUNI 2026</div><h1>Taste and See</h1><div class="subtitle">Am Tisch mit Jesus (Psalm 34,9)</div><div class="tagline">Kennst du Gott nur vom Hörensagen oder hast du ihn schon selbst erlebt?</div><div class="intro-text"><p>„Taste and See" ist ein besonderer Nachmittag für Frauen, die mehr von Gott erleben möchten – für hungrige, suchende Herzen und auch für die, die Gott noch nicht kennen.</p><p>Ein bewegendes Zeugnis zeigt, wie Gott selbst im Schmerz trägt und sich real offenbart. Und vieles mehr erwartet uns an diesem Tag.</p></div></header><section class="speakers-container"><div class="glass-panel speaker-card"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/04/elodie-massua.png" alt="Elodie Massua"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/04/elodie-massua.png" alt="Elodie Massua"></noscript><h3>Elodie Massua</h3><div class="speaker-badge">Moderation</div></div><div class="glass-panel speaker-card"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda"></noscript><h3>Priscille Benda</h3><div class="speaker-badge">Gastsprecherin</div></div></section> <!-- Issachar – zentriert, volle Breite --><section class="speakers-container"><div class="glass-panel speaker-card issachar-card"> <a class="speaker-img-link issachar-img-link" href="https://i-m.life/" target="_blank" rel="noopener"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/issacher-ministries.jpeg" alt="Issachar Ministries"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/issacher-ministries.jpeg" alt="Issachar Ministries"></noscript> </a><h3>Issachar Ministries</h3><div class="speaker-badge speaker-badge--gold">Prophetischer Dienst</div></div></section> <!-- Infos & Programm (Zusammengefasst) --><section class="glass-panel info-box details-list"><h3>Auf einen Blick</h3><div class="detail-row"><div class="detail-text"> <span class="bold">Im Programm:</span><ul class="program-list" style="margin-top: 0.7rem;"><li><strong>Lobpreis &amp; Anbetung</strong><br><span style="font-size:.88em;color:var(--text-light);">mit Naomi Dos Santos &amp; Jemima Kinkela</span></li><li><strong>Gemeinsames Gebet</strong><br><span style="font-size:.88em;color:var(--text-light);">und Zeit in Gottes Gegenwart</span></li><li><strong>Geistliche Impulse und prophetischer Dienst</strong><br><span style="font-size:.88em;color:var(--text-light);">mit Issachar Ministries</span></li><li><strong>Bewegende Zeugnisse</strong><br><span style="font-size:.88em;color:var(--text-light);">von Gottes Wirken</span></li><li><strong>Raum für Begegnungen mit Gott</strong><br><span style="font-size:.88em;color:var(--text-light);">und das Wirken des Heiligen Geistes</span></li><li><strong>Austausch in kleinen Gruppen</strong><br><span style="font-size:.88em;color:var(--text-light);">und Gemeinschaft unter Schwestern</span></li></ul></div></div><div class="detail-row"><div class="detail-text"><span class="bold">Datum:</span><br>Samstag, den 27.06.2026</div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Ort:</span><br>72770 Reutlingen<br> <span style="font-size: 0.85rem; color: var(--text-light); display: block; margin-top: 0.3rem;">Die genaue Adresse erhältst du mit der separaten Anmeldebestätigung, da die Plätze begrenzt sind. Vielen Dank für dein Verständnis.</span></div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Zeiten:</span><br> Einlass: 12:15 Uhr | Beginn: 12:30 Uhr<br> Ende: ca. 17:00 Uhr</div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Eintritt:</span><br> Kostenlos</div></div></section> <!-- Info-Kasten (Gut zu wissen) --><div class="glass-panel kosten-box"><p class="kosten-title">Gut zu wissen</p><p>Das Event ist kostenlos.</p><p>Wir freuen uns über deine Anmeldung, damit wir gut planen können.</p><p>Freiwillige Spenden sind willkommen, damit solche Events weiterhin möglich sind.</p></div> <!-- Video-Rückblick --><section class="glass-panel registration-section"><h2>Rückblick: Taste and See</h2><div class="deadline">27. Juni 2026 · Reutlingen</div><p style="max-width:560px;margin:0 auto 1.8rem;color:var(--text-light);line-height:1.7;">„Taste and See" war ein gesegneter Nachmittag – Gott hat spürbar gewirkt, und wir durften gemeinsam schmecken und sehen, wie gut er ist. Ein ausführlicher Rückblick mit Impressionen und Zeugnissen folgt hier in Kürze. Hier schon einmal ein kurzer Einblick:</p><div style="position:relative;width:100%;max-width:340px;aspect-ratio:9/16;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(67,101,148,0.22);background:#000;"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/HjrYviZbEOE?rel=0" title="Taste and See – Rückblick" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="event-meta" style="margin-top:1.8rem;"><span>Weitere Infos: <a href="/privacy-policy-for-speedytasks/">Datenschutzerklärung</a> · <a href="/impressum/">Impressum</a></span></p></section><section class="glass-panel event-description"><h2 class="section-title">Was ist Taste and See?</h2><div class="verse-block"><blockquote>„Schmecket und sehet, wie freundlich der HERR ist."</blockquote> <cite>Psalm 34,9</cite></div><div class="intro-block"><p>Kennst du Gott nur vom Hörensagen – oder hast du seine Güte schon selbst erlebt?</p><p>Gemeinsam mit unseren Geschwistern der Gemeinde <strong>Der Weg e.V.</strong> laden wir dich herzlich zu Taste and See ein.</p><p>Dieses Event ist für Frauen, die Gott begegnen möchten – die einen Hunger nach mehr haben. Vielleicht gehst du gerade durch eine schwere Zeit, suchst neue Hoffnung und Ermutigung oder möchtest Gott einfach näher kennenlernen. Vielleicht bist du auch schon lange mit Gott unterwegs und sehnst dich danach, ihm neu zu begegnen.</p><p>Gemeinsam wollen wir entdecken, wie Gottes Güte auch heute noch im Alltag erfahrbar ist, und uns gegenseitig ermutigen.</p></div><h2 class="section-title">Was dich erwartet</h2><div class="program-cards"><div class="program-item"><div class="prog-text"> <strong>Lobpreis &amp; Anbetung</strong> <span>Wir starten mit einer Zeit, in der wir gemeinsam zur Ruhe kommen und Gott begegnen.</span> <span>Einfach da sein, auftanken und neu ausrichten.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Gebet</strong> <span>Wir nehmen uns bewusst Zeit für Gebet – für dich persönlich und füreinander.</span> <span>Ein Raum, wo du mit dem, was dich bewegt, vor Gott kommen darfst.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Impulse &amp; Ermutigung</strong> <span>Kurze, klare Gedanken, die dich stärken und dir neue Perspektive geben – ganz praktisch für deinen Alltag.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Persönliche Zeugnisse</strong> <span>Echte Geschichten aus dem Leben.</span> <span>Wie Gott begegnet, trägt und verändert – auch mitten in schwierigen Zeiten.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Austausch in kleinen Gruppen</strong> <span>Ein geschützter Rahmen für ehrliche Gespräche.</span> <span>Du darfst teilen, zuhören oder einfach dabei sein.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Bring &amp; Share Buffet</strong> <span>Jede darf etwas Kleines mitbringen – ganz freiwillig.</span> <span>Wir essen gemeinsam und genießen die Zeit miteinander.</span></div></div></div></section><footer><p>© 2026 Leben im Überfluss<br><a href="/privacy-policy-for-speedytasks/">Datenschutzerklärung</a> · <a href="/impressum/">Impressum</a></p></footer></div> <script> const form = document.getElementById("registration-form");
- const formContainer = document.getElementById("form-container");
- const successMessage = document.getElementById("success-message");
- const errorMessage = document.getElementById("error-message");
- const submitBtn = document.getElementById("submit-button");
- async function handleSubmit(event) {
- event.preventDefault();
- submitBtn.innerHTML = "Wird gesendet...";
- submitBtn.disabled = true;
- errorMessage.classList.add("hidden-msg");
- const data = new FormData(event.target);
- fetch(event.target.action, {
- method: 'POST',
- body: data,
- headers: { 'Accept': 'application/json' }
- }).then(response => {
- if (response.ok) {
- formContainer.classList.add("hidden-msg");
- successMessage.classList.remove("hidden-msg");
- form.reset();
- successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
- } else {
- throw new Error("Sende-Fehler");
- }
- }).catch(error => {
- errorMessage.classList.remove("hidden-msg");
- submitBtn.innerHTML = "Jetzt verbindlich anmelden";
- submitBtn.disabled = false;
- });
- }
- if(form) form.addEventListener("submit", handleSubmit); </script></div></div></div></div></div></div></article></div><footer id="main-footer"><div id="footer-bottom"><div class="container clearfix"><p id="footer-info">Designed by <a href="https://www.elegantthemes.com/" title="Premium WordPress Themes">Elegant Themes</a> | Powered by <a href="https://www.wordpress.org/">WordPress</a></p></div></div></footer></div></div> <script type="speculationrules"> {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/Divi/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]} </script> <script type="text/javascript" src="https://lebenimueberfluss.ch/wp-content/plugins/gutenberg/build/scripts/hooks/index.min.js?ver=7496969728ca0f95732d" id="wp-hooks-js"></script> <script type="text/javascript" src="https://lebenimueberfluss.ch/wp-content/plugins/gutenberg/build/scripts/i18n/index.min.js?ver=781d11515ad3d91786ec" id="wp-i18n-js"></script> <script type="text/javascript" id="wp-i18n-js-after"> /* <![CDATA[ */
+ </style><div class="container"><div class="host-strip" aria-label="Gastgebende Gemeinde Der Weg e.V."><div class="host-logo" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="2" width="4" height="20" fill="#ffd700"/><rect x="4" y="9" width="16" height="4" fill="#ffd700"/></svg></div><div class="host-text"><span class="host-eyebrow">Gastgebende Gemeinde</span><h3>Der Weg e.V.</h3><p>Reutlingen</p></div></div><header class="glass-panel hero-section"><div class="date-badge">27. JUNI 2026</div><h1>Taste and See</h1><div class="subtitle">Am Tisch mit Jesus (Psalm 34,9)</div><div class="tagline">Kennst du Gott nur vom Hörensagen oder hast du ihn schon selbst erlebt?</div><div class="intro-text"><p>„Taste and See" ist ein besonderer Nachmittag für Frauen, die mehr von Gott erleben möchten – für hungrige, suchende Herzen und auch für die, die Gott noch nicht kennen.</p><p>Ein bewegendes Zeugnis zeigt, wie Gott selbst im Schmerz trägt und sich real offenbart. Und vieles mehr erwartet uns an diesem Tag.</p></div></header><section class="speakers-container"><div class="glass-panel speaker-card"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/04/elodie-massua.png" alt="Elodie Massua"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/04/elodie-massua.png" alt="Elodie Massua"></noscript><h3>Elodie Massua</h3><div class="speaker-badge">Moderation</div></div><div class="glass-panel speaker-card"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/pricille.png" alt="Priscille Benda"></noscript><h3>Priscille Benda</h3><div class="speaker-badge">Gastsprecherin</div></div></section> <!-- Issachar – zentriert, volle Breite --><section class="speakers-container"><div class="glass-panel speaker-card issachar-card"> <a class="speaker-img-link issachar-img-link" href="https://i-m.life/" target="_blank" rel="noopener"> <img decoding="async" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/issacher-ministries.jpeg" alt="Issachar Ministries"><noscript><img decoding="async" class="lazyload" src="https://lebenimueberfluss.ch/wp-content/uploads/2026/03/issacher-ministries.jpeg" alt="Issachar Ministries"></noscript> </a><h3>Issachar Ministries</h3><div class="speaker-badge speaker-badge--gold">Prophetischer Dienst</div></div></section> <!-- Infos & Programm (Zusammengefasst) --><section class="glass-panel info-box details-list"><h3>Auf einen Blick</h3><div class="detail-row"><div class="detail-text"> <span class="bold">Im Programm:</span><ul class="program-list" style="margin-top: 0.7rem;"><li><strong>Lobpreis &amp; Anbetung</strong><br><span style="font-size:.88em;color:var(--text-light);">mit Naomi Dos Santos &amp; Jemima Kinkela</span></li><li><strong>Gemeinsames Gebet</strong><br><span style="font-size:.88em;color:var(--text-light);">und Zeit in Gottes Gegenwart</span></li><li><strong>Geistliche Impulse und prophetischer Dienst</strong><br><span style="font-size:.88em;color:var(--text-light);">mit Issachar Ministries</span></li><li><strong>Bewegende Zeugnisse</strong><br><span style="font-size:.88em;color:var(--text-light);">von Gottes Wirken</span></li><li><strong>Raum für Begegnungen mit Gott</strong><br><span style="font-size:.88em;color:var(--text-light);">und das Wirken des Heiligen Geistes</span></li><li><strong>Austausch in kleinen Gruppen</strong><br><span style="font-size:.88em;color:var(--text-light);">und Gemeinschaft unter Schwestern</span></li></ul></div></div><div class="detail-row"><div class="detail-text"><span class="bold">Datum:</span><br>Samstag, den 27.06.2026</div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Ort:</span><br>72770 Reutlingen<br> <span style="font-size: 0.85rem; color: var(--text-light); display: block; margin-top: 0.3rem;">Die genaue Adresse erhältst du mit der separaten Anmeldebestätigung, da die Plätze begrenzt sind. Vielen Dank für dein Verständnis.</span></div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Zeiten:</span><br> Einlass: 12:15 Uhr | Beginn: 12:30 Uhr<br> Ende: ca. 17:00 Uhr</div></div><div class="detail-row"><div class="detail-text"> <span class="bold">Eintritt:</span><br> Kostenlos</div></div></section> <!-- Info-Kasten (Gut zu wissen) --><div class="glass-panel kosten-box"><p class="kosten-title">Gut zu wissen</p><p>Das Event ist kostenlos.</p><p>Wir freuen uns über deine Anmeldung, damit wir gut planen können.</p><p>Freiwillige Spenden sind willkommen, damit solche Events weiterhin möglich sind.</p></div> <!-- Video-Rückblick --><section class="glass-panel registration-section"><h2>Rückblick: Taste and See</h2><div class="deadline">27. Juni 2026 · Reutlingen</div><p style="max-width:560px;margin:0 auto 1.8rem;color:var(--text-light);line-height:1.7;">„Taste and See" war ein gesegneter Nachmittag – Gott hat spürbar gewirkt, und wir durften gemeinsam schmecken und sehen, wie gut er ist. Ein ausführlicher Rückblick mit Impressionen und Zeugnissen folgt hier in Kürze. Hier schon einmal ein kurzer Einblick:</p><div style="position:relative;width:100%;max-width:340px;aspect-ratio:9/16;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(67,101,148,0.22);background:#000;"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/HjrYviZbEOE?rel=0" title="Taste and See – Rückblick" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="event-meta" style="margin-top:1.8rem;"><span>Weitere Infos: <a href="/privacy-policy-for-speedytasks/">Datenschutzerklärung</a> · <a href="/impressum/">Impressum</a></span></p></section><section class="glass-panel event-description"><h2 class="section-title">Was ist Taste and See?</h2><div class="verse-block"><blockquote>„Schmecket und sehet, wie freundlich der HERR ist."</blockquote> <cite>Psalm 34,9</cite></div><div class="intro-block"><p>Kennst du Gott nur vom Hörensagen – oder hast du seine Güte schon selbst erlebt?</p><p>Gemeinsam mit unseren Geschwistern der Gemeinde <strong>Der Weg e.V.</strong> laden wir dich herzlich zu Taste and See ein.</p><p>Dieses Event ist für Frauen, die Gott begegnen möchten – die einen Hunger nach mehr haben. Vielleicht gehst du gerade durch eine schwere Zeit, suchst neue Hoffnung und Ermutigung oder möchtest Gott einfach näher kennenlernen. Vielleicht bist du auch schon lange mit Gott unterwegs und sehnst dich danach, ihm neu zu begegnen.</p><p>Gemeinsam wollen wir entdecken, wie Gottes Güte auch heute noch im Alltag erfahrbar ist, und uns gegenseitig ermutigen.</p></div><h2 class="section-title">Was dich erwartet</h2><div class="program-cards"><div class="program-item"><div class="prog-text"> <strong>Lobpreis &amp; Anbetung</strong> <span>Wir starten mit einer Zeit, in der wir gemeinsam zur Ruhe kommen und Gott begegnen.</span> <span>Einfach da sein, auftanken und neu ausrichten.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Gebet</strong> <span>Wir nehmen uns bewusst Zeit für Gebet – für dich persönlich und füreinander.</span> <span>Ein Raum, wo du mit dem, was dich bewegt, vor Gott kommen darfst.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Impulse &amp; Ermutigung</strong> <span>Kurze, klare Gedanken, die dich stärken und dir neue Perspektive geben – ganz praktisch für deinen Alltag.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Persönliche Zeugnisse</strong> <span>Echte Geschichten aus dem Leben.</span> <span>Wie Gott begegnet, trägt und verändert – auch mitten in schwierigen Zeiten.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Austausch in kleinen Gruppen</strong> <span>Ein geschützter Rahmen für ehrliche Gespräche.</span> <span>Du darfst teilen, zuhören oder einfach dabei sein.</span></div></div><div class="program-item"><div class="prog-text"> <strong>Bring &amp; Share Buffet</strong> <span>Jede darf etwas Kleines mitbringen – ganz freiwillig.</span> <span>Wir essen gemeinsam und genießen die Zeit miteinander.</span></div></div></div></section><footer><p>© 2026 Leben im Überfluss<br><a href="/privacy-policy-for-speedytasks/">Datenschutzerklärung</a> · <a href="/impressum/">Impressum</a></p></footer></div></div></div></div></div></div></div></article></div><footer id="main-footer"><div id="footer-bottom"><div class="container clearfix"><p id="footer-info">Designed by <a href="https://www.elegantthemes.com/" title="Premium WordPress Themes">Elegant Themes</a> | Powered by <a href="https://www.wordpress.org/">WordPress</a></p></div></div></footer></div></div> <script type="speculationrules"> {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/Divi/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]} </script> <script type="text/javascript" src="https://lebenimueberfluss.ch/wp-content/plugins/gutenberg/build/scripts/hooks/index.min.js?ver=7496969728ca0f95732d" id="wp-hooks-js"></script> <script type="text/javascript" src="https://lebenimueberfluss.ch/wp-content/plugins/gutenberg/build/scripts/i18n/index.min.js?ver=781d11515ad3d91786ec" id="wp-i18n-js"></script> <script type="text/javascript" id="wp-i18n-js-after"> /* <![CDATA[ */
 wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 //# sourceURL=wp-i18n-js-after
 /* ]]> */ </script> <script defer type="text/javascript" src="https://lebenimueberfluss.ch/wp-content/uploads/siteground-optimizer-assets/swv.min.js?ver=6.1.5" id="swv-js"></script> <script defer type="text/javascript" id="contact-form-7-js-before"> /* <![CDATA[ */
